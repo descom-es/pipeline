@@ -1,11 +1,11 @@
 {
-    "name": "descom/skeleton",
-    "description": "package_description",
+    "name": "descom/pipeline",
+    "description": "pipeline to inject plugins",
     "type": "library",
     "require": {
         "php": "^8.0"
     },
-    "homepage": "https://github.com/descom/skeleton",
+    "homepage": "https://github.com/descom/pipeline",
     "license": "MIT",
     "authors": [
         {
@@ -28,7 +28,8 @@
     },
     "autoload": {
         "psr-4": {
-            "Descom\\Skeleton\\": "src"
+            "Descom\\Pipeline\\": "src",
+            "Descom\\Pipeline\\Tests\\": "tests"
         }
     },
     "scripts": {
