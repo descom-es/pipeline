@@ -11,7 +11,7 @@ use PHPUnit\Framework\TestCase;
 
 class PipelineTest extends TestCase
 {
-    public function test_pipeline()
+    public function testPipeline()
     {
         $this->injections();
 
