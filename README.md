@@ -14,13 +14,30 @@ composer require descom/pipeline
 
 ## Usage
 
-From plugin:
+
+### Create Stages
+
+Samples:
+
+- [DoubleStage](tests/Support/DoubleStage.php)
+- [AddStage](tests/Support/AddStage.php)
+
+### Create Pipeline
+
+```php
+use Descom\Pipeline\PipeLine;
+
+class SamplePipeline extends PipeLine
+{}
+```
+
+### Configure plugin to add Stages
 
 ```php
     SamplePipeline::getInstance()->pipe(new DoubleStage())->pipe(new AddStage());
 ```
 
-From code:
+### Process pipeline to transform data in core
 
 ```php
     $payload = SamplePipeline::getInstance()->process($payload);
