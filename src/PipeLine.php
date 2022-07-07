@@ -14,7 +14,7 @@ abstract class PipeLine
 
     public static function getInstance(): static
     {
-        if (!isset(static::$self[static::class])) {
+        if (! isset(static::$self[static::class])) {
             static::$self[static::class] = new static();
         }
 
