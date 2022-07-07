@@ -2,6 +2,7 @@
 
 namespace Descom\Pipeline;
 
+/** @phpstan-consistent-constructor */
 abstract class PipeLine
 {
     private static array $self = [];
@@ -14,11 +15,11 @@ abstract class PipeLine
 
     public static function getInstance(): static
     {
-        if (! isset(static::$self[static::class])) {
-            static::$self[static::class] = new static();
+        if (! isset(self::$self[static::class])) {
+            self::$self[static::class] = new static();
         }
 
-        return static::$self[static::class];
+        return self::$self[static::class];
     }
 
     public function pipe(Stage $stage): static
