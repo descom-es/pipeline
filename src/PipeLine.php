@@ -44,6 +44,6 @@ abstract class PipeLine
 
     private function processStage($stage, $payload)
     {
-        return $stage->__invoke($payload);
+        return $stage->handle($payload);
     }
 }
