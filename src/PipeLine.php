@@ -2,14 +2,13 @@
 
 namespace Descom\Pipeline;
 
-/** @phpstan-consistent-constructor */
 abstract class PipeLine
 {
     private static array $self = [];
 
     private array $stages = [];
 
-    private function __construct()
+    final private function __construct()
     {
     }
 
