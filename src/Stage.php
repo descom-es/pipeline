@@ -11,5 +11,5 @@ abstract class Stage
      *
      * @return mixed
      */
-    abstract public function __invoke($payload);
+    abstract public function handle($payload);
 }

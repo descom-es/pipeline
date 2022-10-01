@@ -6,7 +6,7 @@ use Descom\Pipeline\Stage;
 
 class AddStage extends Stage
 {
-    public function __invoke($payload)
+    public function handle($payload)
     {
         return $payload + 1;
     }
