@@ -2,7 +2,7 @@
 
 namespace Descom\Pipeline;
 
-interface Stage
+abstract class Stage
 {
     /**
      * Process the payload.
@@ -11,5 +11,5 @@ interface Stage
      *
      * @return mixed
      */
-    public function __invoke($payload);
+    abstract public function __invoke($payload);
 }

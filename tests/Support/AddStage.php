@@ -4,7 +4,7 @@ namespace Descom\Pipeline\Tests\Support;
 
 use Descom\Pipeline\Stage;
 
-class AddStage implements Stage
+class AddStage extends Stage
 {
     public function __invoke($payload)
     {
