@@ -1,7 +1,7 @@
 # Pipeline to plugins
 
 [![tests](https://github.com/descom-es/pipeline/actions/workflows/test.yml/badge.svg)](https://github.com/descom-es/pipeline/actions/workflows/test.yml)
-[![analyse](https://github.com/descom-es/pipeline/actions/workflows/analyse.yml/badge.svg)](https://github.com/descom-es/pipeline/actions/workflows/analyse.yml)
+[![analyze](https://github.com/descom-es/pipeline/actions/workflows/analyse.yml/badge.svg)](https://github.com/descom-es/pipeline/actions/workflows/analyse.yml)
 [![styles](https://github.com/descom-es/pipeline/actions/workflows/fix_style.yml/badge.svg)](https://github.com/descom-es/pipeline/actions/workflows/fix_style.yml)
 
 ## Install
@@ -14,13 +14,12 @@ composer require descom/pipeline
 
 ## Usage
 
-
 ### Create Stages
 
 Samples:
 
 - [DoubleStage](tests/Support/DoubleStage.php)
-- [AddStage](tests/Support/AddStage.php)
+- [IncreaseStage](tests/Support/IncreaseStage.php)
 
 ### Create Pipeline
 
@@ -34,13 +33,46 @@ class SamplePipeline extends PipeLine
 ### Configure plugin to add Stages
 
 ```php
-    SamplePipeline::getInstance()->pipe(new DoubleStage())->pipe(new AddStage());
+    SamplePipeline::getInstance()
+        ->pipe(new DoubleStage())
+        ->pipe(new IncreaseStage());
 ```
 
 ### Process pipeline to transform data in core
 
 ```php
-    $payload = SamplePipeline::getInstance()->process($payload);
+    $payload = 10;
+
+    $payload = SamplePipeline::getInstance()
+        ->process($payload); // return 21 (10 * 2) + 1
+```
+
+### Options
+
+Perhaps you need to add options to the stages, for example, the number of times to double the value.
+You can call method `options` to add options to the stages.
+
+```php
+    $payload = 10;
+
+    $payload = SamplePipeline::getInstance()
+        ->option('twiceDouble', 3)
+        ->option('twiceIncrease', 2)
+        ->process($payload); // return 32 (10 * 2 * 3) + (1 + 1)
+```
+
+You can define `DoubleStage` as:
+
+```php
+class DoubleStage extends Stage
+{
+    public function handle($payload): int
+    {
+        $twiceDouble = $this->options['twiceDouble'] ?? 1;
+
+        return $payload * 2 * $twiceDouble;
+    }
+}
 ```
 
 ## Testing
