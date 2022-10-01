@@ -8,11 +8,8 @@ abstract class PipeLine
 
     private array $stages = [];
 
-    private PipeLineOptions $options;
-
     final private function __construct()
     {
-        $this->options = new PipeLineOptions();
     }
 
     public static function getInstance(): static
@@ -26,36 +23,24 @@ abstract class PipeLine
 
     public function pipe(Stage $stage): static
     {
-        $stage->options($this->options);
-
         $this->stages[] = $stage;
 
         return $this;
     }
 
-    public function option(string $key, $value): static
-    {
-        $this->options->$key = $value;
-
-        return $this;
-    }
-
-    public function process($payload)
-    {
-        return $this->processStages($payload);
-    }
-
-    private function processStages($payload)
+    public function process($payload, array $options = [])
     {
         foreach ($this->stages as $stage) {
-            $payload = $this->processStage($stage, $payload);
+            $payload = $this->processStage($stage, $payload, $options);
         }
 
         return $payload;
     }
 
-    private function processStage($stage, $payload)
+    private function processStage(Stage $stage, $payload, $options)
     {
+        $stage->options($options);
+
         return $stage->handle($payload);
     }
 }

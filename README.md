@@ -50,15 +50,16 @@ class SamplePipeline extends PipeLine
 ### Options
 
 Perhaps you need to add options to the stages, for example, the number of times to double the value.
-You can call method `options` to add options to the stages.
+You can call method `with` to add options to the stages.
 
 ```php
     $payload = 10;
 
     $payload = SamplePipeline::getInstance()
-        ->option('twiceDouble', 3)
-        ->option('twiceIncrease', 2)
-        ->process($payload); // return 32 (10 * 2 * 3) + (1 + 1)
+        ->process($payload, [
+            'twiceDouble' => 3,
+            'twiceIncrease' => 2
+        ]); // return 82 (10 * 2 ^ 3) + (1 + 1)
 ```
 
 You can define `DoubleStage` as:
@@ -68,9 +69,9 @@ class DoubleStage extends Stage
 {
     public function handle($payload): int
     {
-        $twiceDouble = $this->options['twiceDouble'] ?? 1;
+        $twiceDouble = $this->option('twiceDouble') ?? 1;
 
-        return $payload * 2 * $twiceDouble;
+        return $payload * pow(2, $twiceDouble);
     }
 }
 ```

@@ -6,9 +6,11 @@ class PipeLineOptions
 {
     private array $options = [];
 
-    public function __set(string $key, $value)
+    public function __construct(array $options)
     {
-        $this->options[$key] = $value;
+        foreach ($options as $key => $value) {
+            $this->options[$key] = $value;
+        }
     }
 
     public function get(string $key)
