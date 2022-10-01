@@ -37,13 +37,13 @@ abstract class PipeLine
     private function processStages($payload)
     {
         foreach ($this->stages as $stage) {
-            $payload = $this->proccesStage($stage, $payload);
+            $payload = $this->processStage($stage, $payload);
         }
 
         return $payload;
     }
 
-    private function proccesStage($stage, $payload)
+    private function processStage($stage, $payload)
     {
         return $stage->__invoke($payload);
     }
