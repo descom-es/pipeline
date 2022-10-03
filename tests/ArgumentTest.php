@@ -41,7 +41,7 @@ class ArgumentTest extends TestCase
             80,
             ArgumentPipelineSample::getInstance()
                 ->process(10, [
-                    'twiceDouble' => 3
+                    'twiceDouble' => 3,
                 ])
         );
 

@@ -2,8 +2,6 @@
 
 namespace Descom\Pipeline;
 
-use Descom\Pipeline\Test\PipelineTest;
-
 abstract class Stage
 {
     private PipeLineOptions $options;

@@ -2,8 +2,8 @@
 
 namespace Descom\Pipeline\Test;
 
-use Descom\Pipeline\Tests\Support\IncreaseStage;
 use Descom\Pipeline\Tests\Support\DoubleStage;
+use Descom\Pipeline\Tests\Support\IncreaseStage;
 use Descom\Pipeline\Tests\Support\OnePipeline;
 use Descom\Pipeline\Tests\Support\ThreePipeline;
 use Descom\Pipeline\Tests\Support\TwoPipeline;
