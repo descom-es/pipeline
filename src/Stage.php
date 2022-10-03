@@ -2,8 +2,12 @@
 
 namespace Descom\Pipeline;
 
-interface Stage
+use Descom\Pipeline\Test\PipelineTest;
+
+abstract class Stage
 {
+    private PipeLineOptions $options;
+
     /**
      * Process the payload.
      *
@@ -11,5 +15,17 @@ interface Stage
      *
      * @return mixed
      */
-    public function __invoke($payload);
+    abstract public function handle($payload);
+
+    public function options(array $options): static
+    {
+        $this->options = new PipeLineOptions($options);
+
+        return $this;
+    }
+
+    protected function option(string $key)
+    {
+        return $this->options->get($key);
+    }
 }

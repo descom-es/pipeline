@@ -28,22 +28,19 @@ abstract class PipeLine
         return $this;
     }
 
-    public function process($payload)
-    {
-        return $this->processStages($payload);
-    }
-
-    private function processStages($payload)
+    public function process($payload, array $options = [])
     {
         foreach ($this->stages as $stage) {
-            $payload = $this->processStage($stage, $payload);
+            $payload = $this->processStage($stage, $payload, $options);
         }
 
         return $payload;
     }
 
-    private function processStage($stage, $payload)
+    private function processStage(Stage $stage, $payload, $options)
     {
-        return $stage->__invoke($payload);
+        $stage->options($options);
+
+        return $stage->handle($payload);
     }
 }

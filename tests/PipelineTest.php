@@ -2,7 +2,7 @@
 
 namespace Descom\Pipeline\Test;
 
-use Descom\Pipeline\Tests\Support\AddStage;
+use Descom\Pipeline\Tests\Support\IncreaseStage;
 use Descom\Pipeline\Tests\Support\DoubleStage;
 use Descom\Pipeline\Tests\Support\OnePipeline;
 use Descom\Pipeline\Tests\Support\ThreePipeline;
@@ -22,8 +22,8 @@ class PipelineTest extends TestCase
 
     private function injections()
     {
-        OnePipeline::getInstance()->pipe(new DoubleStage())->pipe(new AddStage());
+        OnePipeline::getInstance()->pipe(new DoubleStage())->pipe(new IncreaseStage());
 
-        TwoPipeline::getInstance()->pipe(new AddStage())->pipe(new DoubleStage());
+        TwoPipeline::getInstance()->pipe(new IncreaseStage())->pipe(new DoubleStage());
     }
 }
