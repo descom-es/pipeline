@@ -20,6 +20,15 @@ class PipelineTest extends TestCase
         $this->assertEquals(10, ThreePipeline::getInstance()->process(10));
     }
 
+    public function testHasStages()
+    {
+        $this->injections();
+
+        $this->assertTrue(OnePipeline::getInstance()->hasStages());
+        $this->assertTrue(TwoPipeline::getInstance()->hasStages());
+        $this->assertFalse(ThreePipeline::getInstance()->hasStages());
+    }
+
     private function injections()
     {
         OnePipeline::getInstance()->pipe(new DoubleStage())->pipe(new IncreaseStage());
