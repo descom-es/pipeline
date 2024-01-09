@@ -37,6 +37,11 @@ abstract class PipeLine
         return $payload;
     }
 
+    public function hasStages(): bool
+    {
+        return count($this->stages) > 0;
+    }
+
     private function processStage(Stage $stage, $payload, $options)
     {
         $stage->options($options);

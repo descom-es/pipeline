@@ -1,6 +1,8 @@
 /vendor
 /build
+/composer-local.json
 /composer.lock
+/composer-local.lock
 /.php_cs.cache
 /.phpunit.result.cache
 /.php-cs-fixer.cache
